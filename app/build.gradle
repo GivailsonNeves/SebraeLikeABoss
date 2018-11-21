@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "br.com.givailson.sebraelikeaboss"
-        minSdkVersion 19
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -20,13 +20,16 @@ android {
 
 dependencies {
     def room_version = "1.1.1"
-
+    def butterknife_version = "9.0.0-rc2"
 
     implementation "android.arch.lifecycle:extensions:$room_version"
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
     implementation "android.arch.lifecycle:extensions:$room_version"
     annotationProcessor "android.arch.lifecycle:compiler:$room_version"
+
+    implementation "com.jakewharton:butterknife:$butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

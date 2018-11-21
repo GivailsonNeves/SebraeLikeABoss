@@ -8,34 +8,40 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
 import br.com.givailson.sebraelikeaboss.database.Participant;
 import br.com.givailson.sebraelikeaboss.database.ParticipantViewModel;
 import br.com.givailson.sebraelikeaboss.views.RegisterActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
     private ParticipantViewModel participantViewModel;
-    private View btRegister;
+    @BindView(R.id.btRegister) Button btRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
         prepareDatabase();
-        btRegister = findViewById(R.id.btRegister);
+        prepareEvents();
+
+//        Participant participant = new Participant("Givailson", "givailson@gmail.com", "TI", "xii", new Date());
+//        participantViewModel.insert(participant);
+    }
+
+    private void prepareEvents() {
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startRegistry();
             }
         });
-
-//        Participant participant = new Participant("Givailson", "givailson@gmail.com", "TI", "xii", new Date());
-//        participantViewModel.insert(participant);
     }
 
     private void startRegistry() {

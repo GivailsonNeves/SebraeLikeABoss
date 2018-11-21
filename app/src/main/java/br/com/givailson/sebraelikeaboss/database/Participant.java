@@ -23,27 +23,47 @@ public class Participant {
     @ColumnInfo(name = "nome_empresa")
     public String enterpriseName;
 
+    @ColumnInfo(name = "tem_negocio")
+    public String hasBusiness;
+
+    @ColumnInfo(name = "tempo_negocio")
+    public String timeOfBusiness;
+
     @ColumnInfo(name = "setor_atuacao")
     public String actuationSector;
+
+    @ColumnInfo(name = "vende_pela_internet")
+    public boolean sellForInternet;
+
+    @ColumnInfo(name = "diferencial_negocio")
+    public String businessPlus;
 
     @ColumnInfo(name = "data_participacao")
     public Date participationDate;
 
     @Ignore
-    public Participant(String name, String email, String enterpriseName, String actuationSector, Date participationDate) {
+    public Participant(String name, String email, String enterpriseName, String hasBusiness, String timeOfBusiness, String actuationSector, boolean sellForInternet, String businessPlus, Date participationDate) {
         this.name = name;
         this.email = email;
         this.enterpriseName = enterpriseName;
+        this.hasBusiness = hasBusiness;
+        this.timeOfBusiness = timeOfBusiness;
         this.actuationSector = actuationSector;
+        this.sellForInternet = sellForInternet;
+        this.businessPlus = businessPlus;
         this.participationDate = participationDate;
     }
 
-    public Participant(int uid, String name, String email, String enterpriseName, String actuationSector, Date participationDate) {
+    public Participant(int uid, String name, String email, String enterpriseName, String hasBusiness, String timeOfBusiness, String actuationSector, boolean sellForInternet, String businessPlus, Date participationDate) {
         this.uid = uid;
         this.name = name;
         this.email = email;
         this.enterpriseName = enterpriseName;
+        this.hasBusiness = hasBusiness;
+        this.timeOfBusiness = timeOfBusiness;
         this.actuationSector = actuationSector;
+        this.sellForInternet = sellForInternet;
+        this.businessPlus = businessPlus;
         this.participationDate = participationDate;
     }
 }
