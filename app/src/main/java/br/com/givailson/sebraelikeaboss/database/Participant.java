@@ -42,6 +42,9 @@ public class Participant {
     public Date participationDate;
 
     @Ignore
+    public Participant() {}
+
+    @Ignore
     public Participant(String name, String email, String enterpriseName, String hasBusiness, String timeOfBusiness, String actuationSector, boolean sellForInternet, String businessPlus, Date participationDate) {
         this.name = name;
         this.email = email;

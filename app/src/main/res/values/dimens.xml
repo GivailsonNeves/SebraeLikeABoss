@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_dots">30dp</dimen>
+    <dimen name="width_dots">300dp</dimen>
+    <dimen name="width_logo_home">500dp</dimen>
+</resources>
