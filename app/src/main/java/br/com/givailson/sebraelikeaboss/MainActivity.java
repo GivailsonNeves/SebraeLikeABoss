@@ -8,11 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import java.util.Date;
 import java.util.List;
 
 import br.com.givailson.sebraelikeaboss.database.Participant;
 import br.com.givailson.sebraelikeaboss.database.ParticipantViewModel;
+import br.com.givailson.sebraelikeaboss.models.BaseRequest;
+import br.com.givailson.sebraelikeaboss.models.Register;
+import br.com.givailson.sebraelikeaboss.utils.RetrofitConfig;
 import br.com.givailson.sebraelikeaboss.views.RegisterActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,8 +34,22 @@ public class MainActivity extends AppCompatActivity {
         prepareDatabase();
         prepareEvents();
 
-//        Participant participant = new Participant("Givailson", "givailson@gmail.com", "TI", "xii", new Date());
+        //Participant participant = new Participant();
 //        participantViewModel.insert(participant);
+        Register r = new Register();
+
+        Call<BaseRequest> registerCall = new RetrofitConfig().getRegisterService().register(r);
+        registerCall.enqueue(new Callback<BaseRequest>() {
+            @Override
+            public void onResponse(Call<BaseRequest> call, Response<BaseRequest> response) {
+                Log.i("Register", response.toString());
+            }
+
+            @Override
+            public void onFailure(Call<BaseRequest> call, Throwable t) {
+                Log.i("Register", t.getMessage());
+            }
+        });
     }
 
     private void prepareEvents() {
