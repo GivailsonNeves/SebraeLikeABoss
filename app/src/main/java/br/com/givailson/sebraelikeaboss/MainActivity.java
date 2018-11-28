@@ -36,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Participant participant = new Participant();
 //        participantViewModel.insert(participant);
+        Log.i("Register", "vai");
         Register r = new Register();
-
+        r.email = "givailson@gmail.com";
+        r.name = "givailson de souza neves";
+        r.actuationSector = "xiii";
+        Log.i("Register", "vai");
         Call<BaseRequest> registerCall = new RetrofitConfig().getRegisterService().register(r);
         registerCall.enqueue(new Callback<BaseRequest>() {
             @Override
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Register", t.getMessage());
             }
         });
+
     }
 
     private void prepareEvents() {
