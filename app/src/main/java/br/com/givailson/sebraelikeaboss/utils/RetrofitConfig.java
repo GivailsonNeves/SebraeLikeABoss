@@ -9,7 +9,7 @@ public class RetrofitConfig {
 
     public RetrofitConfig() {
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.61.3.175/sebraelikeabosserver/")
+                .baseUrl("http://sebraelikeaboss.esy.es/")
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
     }

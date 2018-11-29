@@ -20,5 +20,5 @@ public class Register {
 
     public String businessPlus;
 
-    public Date participationDate;
+    public String participationDate;
 }

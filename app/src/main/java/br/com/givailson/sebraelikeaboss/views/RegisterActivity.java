@@ -1,5 +1,6 @@
 package br.com.givailson.sebraelikeaboss.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import br.com.givailson.sebraelikeaboss.R;
 import br.com.givailson.sebraelikeaboss.database.Participant;
+import br.com.givailson.sebraelikeaboss.database.ParticipantViewModel;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button btTimeLessOne;
     private Button btTimeMoreThanTwo;
     private Button btTimeOneToTwo;
+    private ParticipantViewModel participantViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void config() {
+
+        participantViewModel = ViewModelProviders
+                .of(this).get(ParticipantViewModel.class);
 
         etNome = findViewById(R.id.etNome);
         etEmail = findViewById(R.id.etEmail);
@@ -104,6 +110,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void saveData () {
+
+        this.participantViewModel.insert(participant);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Dados salvos com sucesso!")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener(){

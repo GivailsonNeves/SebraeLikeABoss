@@ -16,6 +16,7 @@ import br.com.givailson.sebraelikeaboss.database.Participant;
 import br.com.givailson.sebraelikeaboss.database.ParticipantViewModel;
 import br.com.givailson.sebraelikeaboss.models.BaseRequest;
 import br.com.givailson.sebraelikeaboss.models.Register;
+import br.com.givailson.sebraelikeaboss.service.SyncronizeService;
 import br.com.givailson.sebraelikeaboss.utils.RetrofitConfig;
 import br.com.givailson.sebraelikeaboss.views.RegisterActivity;
 import retrofit2.Call;
@@ -34,27 +35,6 @@ public class MainActivity extends AppCompatActivity {
         prepareDatabase();
         prepareEvents();
 
-        //Participant participant = new Participant();
-//        participantViewModel.insert(participant);
-        Log.i("Register", "vai");
-        Register r = new Register();
-        r.email = "givailson@gmail.com";
-        r.name = "givailson de souza neves";
-        r.actuationSector = "xiii";
-        Log.i("Register", "vai");
-        Call<BaseRequest> registerCall = new RetrofitConfig().getRegisterService().register(r);
-        registerCall.enqueue(new Callback<BaseRequest>() {
-            @Override
-            public void onResponse(Call<BaseRequest> call, Response<BaseRequest> response) {
-                Log.i("Register", response.toString());
-            }
-
-            @Override
-            public void onFailure(Call<BaseRequest> call, Throwable t) {
-                Log.i("Register", t.getMessage());
-            }
-        });
-
     }
 
     private void prepareEvents() {
@@ -65,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 startRegistry();
             }
         });
+        startService(new Intent(this, SyncronizeService.class));
     }
 
     private void startRegistry() {

@@ -10,7 +10,7 @@ public class ParticipantRepository {
     private ParticipantDao participantDao;
     private LiveData<List<Participant>> participants;
 
-    ParticipantRepository(Application application) {
+    public ParticipantRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         participantDao = db.participantDao();
         participants = participantDao.getAllParticipants();
@@ -20,9 +20,20 @@ public class ParticipantRepository {
         new insertAsyncTask(participantDao).execute(participant);
     }
 
+    public void delete(Participant participant) {
+        new deleteAsyncTask(participantDao).execute(participant);
+    }
+
     public LiveData<List<Participant>> listParticipantes() {
         return participants;
     }
+
+    public List<Participant> listParticipantesNotSicronized() {
+
+        return this.participantDao.getAllParticipantsList();
+    }
+
+
 
     private static class insertAsyncTask extends AsyncTask<Participant, Void, Void> {
         private ParticipantDao participanteDao;
@@ -34,6 +45,20 @@ public class ParticipantRepository {
         @Override
         protected Void doInBackground(final Participant... participants) {
             participanteDao.insert(participants[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<Participant, Void, Void> {
+
+        private final ParticipantDao participanteDao;
+
+        deleteAsyncTask(ParticipantDao dao) {
+            participanteDao = dao;
+        }
+        @Override
+        protected Void doInBackground(Participant... participants) {
+            participanteDao.delete(participants[0]);
             return null;
         }
     }
